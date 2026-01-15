@@ -15,5 +15,4 @@ public class AppConfig {
                 .setFieldMatchingEnabled(true);
         return modelMapper;
     }
-
 }

@@ -11,4 +11,5 @@ public interface EmployeeService {
     void deleteEmployee(Long id);
     EmployeeDto getSingleEmployee(Long id);
     List<EmployeeDto> getAllEmployees();
+    EmployeeDto getEmployeeByEmpCodeAndCompanyName(String empCode, String companyName);
 }
