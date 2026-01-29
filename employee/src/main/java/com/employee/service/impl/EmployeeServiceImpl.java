@@ -67,6 +67,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeDto getSingleEmployee(Long id) {
+
         Employee employee = employeeRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Employee not found with id: " + id));
         List<AddressDto> addresses = new ArrayList<>();
         EmployeeDto dto = modelMapper.map(employee, EmployeeDto.class);
