@@ -1,8 +1,8 @@
 package com.employee.service.impl;
 
+import com.commomlib.common_lib.exception.BadRequestException;
+import com.commomlib.common_lib.exception.ResourceNotFoundException;
 import com.employee.client.AddressClient;
-import com.employee.exception.BadRequestException;
-import com.employee.exception.ResourceNotFoundException;
 import com.employee.model.dto.AddressDto;
 import com.employee.model.dto.EmployeeDto;
 import com.employee.model.entity.Employee;
@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -41,6 +42,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new RuntimeException("Employee already exists");
         }
         Employee entity = modelMapper.map(employeeDto, Employee.class);
+        entity.setCreateAt(LocalDateTime.now());
         Employee savedEntity = employeeRepository.save(entity);
         return modelMapper.map(savedEntity, EmployeeDto.class);
     }
@@ -55,6 +57,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         employeeRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Employee not found with id: " + id));
         Employee entity = modelMapper.map(employeeDto, Employee.class);
+        entity.setUpdatedAt(LocalDateTime.now());
         Employee updatedEntity = employeeRepository.save(entity);
         return modelMapper.map(updatedEntity, EmployeeDto.class);
     }

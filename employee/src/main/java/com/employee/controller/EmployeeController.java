@@ -1,6 +1,6 @@
 package com.employee.controller;
 
-import com.employee.exception.MissingParameterException;
+import com.commomlib.common_lib.exception.MissingParameterException;
 import com.employee.model.dto.EmployeeDto;
 import com.employee.model.entity.Employee;
 import com.employee.service.EmployeeService;
